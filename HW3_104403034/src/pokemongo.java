@@ -1,4 +1,4 @@
-//¸êºÞ3B 104403034 ©Pªé¦w
+
 import javax.swing.JFrame;
 
 public class pokemongo {
