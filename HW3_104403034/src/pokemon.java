@@ -1,4 +1,4 @@
-//¸êºŞ3B 104403034 ©Pªé¦w
+
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -17,9 +17,9 @@ import javax.swing.*;
 public class pokemon extends JFrame{
 	private JPanel main = new JPanel();
 	private JLabel img = new JLabel();
-	private JPanel under = new JPanel(); //©ñname button1 button2 
-	private JPanel button1 = new JPanel(); //²Ä¤@±Æ«ö¶s
-	private JPanel button2 = new JPanel(); //²Ä¤G±Æ«ö¶s
+	private JPanel under = new JPanel(); //æ”¾name button1 button2 
+	private JPanel button1 = new JPanel(); //ç¬¬ä¸€æ’æŒ‰éˆ•
+	private JPanel button2 = new JPanel(); //ç¬¬äºŒæ’æŒ‰éˆ•
 	private JTextField name = new JTextField("set your nickname"); 
 	private JButton givecandy = new JButton("Give Candy"); 
 	private JButton open = new JButton("Open game");
@@ -28,10 +28,10 @@ public class pokemon extends JFrame{
 	private JLabel info = new JLabel("New File");
 	private JLabel candycount = new JLabel("0/25");
 	private Icon[] icons = new ImageIcon[3];
-	private int[] count = new int[3];  //¿}ªG¼Æ 
+	private int[] count = new int[3];  //ç³–æœæ•¸ 
 	private Scanner scanner;
-	private int s = 0,level = 0; //s:¤@¦¸¥[¦h¤Ö,level:µ¥¯Å
-	private String type="small",abs; //type:ºØÃş
+	private int s = 0,level = 0; //s:ä¸€æ¬¡åŠ å¤šå°‘,level:ç­‰ç´š
+	private String type="small",abs; //type:ç¨®é¡
 	private ObjectInputStream input;
 	private ObjectOutputStream output;
 	private File selectedFile;
@@ -54,12 +54,12 @@ public class pokemon extends JFrame{
 		under.add(button2);
 		under.add(info);
 		try{
-			scanner = new Scanner(new File(this.getClass().getResource("/pokemon.txt").getPath()));//Åª¤å¦rÀÉ
+			scanner = new Scanner(new File(this.getClass().getResource("/pokemon.txt").getPath()));//è®€æ–‡å­—æª”
 			int k=0;
 		    while(scanner.hasNext()){
-		     icons[k] = new ImageIcon(getClass().getResource(scanner.next()));//¦s¨ú¹Ï¤ù
+		     icons[k] = new ImageIcon(getClass().getResource(scanner.next()));//å­˜å–åœ–ç‰‡
 		     if(k<=1){
-		    	 count[k] = scanner.nextInt();//¥u¦³k=0,1¤~¦³­È
+		    	 count[k] = scanner.nextInt();//åªæœ‰k=0,1æ‰æœ‰å€¼
 		    	 }
 		     k++;
 		    }
@@ -93,7 +93,7 @@ public class pokemon extends JFrame{
 		            @Override
 		            public void actionPerformed(ActionEvent e)
 		            {
-		            	s = s+1;  //¤@¦¸+1  
+		            	s = s+1;  //ä¸€æ¬¡+1  
 		            	if(level==0){
 		            		candycount.setText(s+"/"+count[level]);
 		            		if(s==count[level]){
@@ -101,7 +101,7 @@ public class pokemon extends JFrame{
 			            		level++;
 			            		type = "medium";
 			            		img.setIcon(icons[level]);
-			            		s=0;   //Âk¹s
+			            		s=0;   //æ­¸é›¶
 		            		}
 		            	}
 		            	if(level==1){
@@ -138,14 +138,14 @@ public class pokemon extends JFrame{
 		                	name.setText(record.getNickname());
 		                	s = record.getCandy();
 		                	type = record.getMonster();
-		                	switch(record.getMonster()){//³]©wµ¥¯Å
-		        			case "small": //¤p¤õÀs
+		                	switch(record.getMonster()){//è¨­å®šç­‰ç´š
+		        			case "small": //å°ç«é¾
 		        				level = 0;
 		        				break;
-		        			case "medium": //¤õ®£Às
+		        			case "medium": //ç«æé¾
 		        				level = 1;
 		        				break;
-		        			case "large": //¼Q¤õÀs
+		        			case "large": //å™´ç«é¾
 		        				level = 2;
 		        				break;
 		        			}
@@ -196,8 +196,8 @@ public class pokemon extends JFrame{
 		            		int result = jfile.showSaveDialog(pokemon.this);
 							if(result == JFileChooser.APPROVE_OPTION){
 								File dir = jfile.getSelectedFile();
-								FileOutputStream fileoutput = new FileOutputStream(dir);//±NÀÉ®×(dir)»POutputStream¦ê±µ
-								output = new ObjectOutputStream(fileoutput);//¦ê±µ
+								FileOutputStream fileoutput = new FileOutputStream(dir);//å°‡æª”æ¡ˆ(dir)èˆ‡OutputStreamä¸²æ¥
+								output = new ObjectOutputStream(fileoutput);//ä¸²æ¥
 								output.writeObject(newSave);
 								info.setText("New Save to : " + dir.getAbsolutePath());
 								abs = dir.getAbsolutePath();
